@@ -2,6 +2,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        AdicionarEPercorrerPilha();
+
+    }
+
+    public static void AdicionarEPercorrerPilha(){
         System.out.println("Teste: Adicionar Itens e Percorrer Pilha");
         System.out.println("\n=== Iniciando ===");
 
@@ -12,14 +17,10 @@ public class Main {
         long tempoInicio = System.nanoTime();
 
         System.out.println("Memória Atual: " + memoriaAntes);
-        System.out.println("Tempo atual: " + tempoInicio);
-
-        System.out.println(String.format("Memória inicial: %.2f MB", bytesParaMB(memoriaAntes)));
-        System.out.println(String.format("Tempo inicial: %d ns", tempoInicio));
-
+        System.out.println("Tempo atual: " + tempoInicio + " ns");
 
         Stack<Integer> pilha = new Stack<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10000; i++) {
             pilha.push(i);
         }
         while (!pilha.isEmpty()) {
@@ -31,24 +32,15 @@ public class Main {
         long tempoFim = System.nanoTime();
 
         System.out.println("\n=== Finalizando  ===");
-        System.out.println(String.format("Memória final: %.2f MB", bytesParaMB(memoriaDepois)));
-        System.out.println(String.format("Tempo final: %d ns", tempoFim));
+        System.out.println("Memória Final: " + memoriaDepois + " bytes");
+        System.out.println("Tempo Final: " + tempoFim + " ns");
 
         // Calcula os totais
         long tempoTotal = tempoFim - tempoInicio;
         long memoriaConsumida = memoriaDepois - memoriaAntes;
 
         System.out.println("\n---- RESULTADOS ----");
-        System.out.println(String.format("Tempo total: %.3f ms", nanosParaMillis(tempoTotal)));
-        System.out.println(String.format("Memória consumida: %.2f MB", bytesParaMB(memoriaConsumida)));
-
-    }
-
-    private static double bytesParaMB(long bytes) {
-        return bytes / (1024.0 * 1024.0);
-    }
-
-    private static double nanosParaMillis(long nanos) {
-        return nanos / 1_000_000.0;
+        System.out.println("Tempo Total: " + tempoTotal + " ns");
+        System.out.println("Memória Consumida: " + memoriaConsumida + " bytes");
     }
 }
